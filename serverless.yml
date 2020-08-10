@@ -1,0 +1,10 @@
+service: yoav-gitlab-test
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  hello:
+    handler: src/handler.hello
+    events:
+      - http: GET hello
