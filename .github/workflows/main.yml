@@ -1,26 +1,24 @@
-  name: Yoav Test CICD Master Pipeline
 on:
   push:
     branches:
-#      - master
-    branches: [ master ]
+      - master
+name: Deploy master branch
 jobs:
-  Build:
-    name: CI/CD
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
-    
-    - name: VM Setup
-      uses: actions/checkout@v2
-    
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@master
+    - name: npm install
+      uses: actions/npm@master
       with:
-        node-version: 12.x
-    
-    - name: Packages Installation
-      run: npm install && npm install -g serverless
-    - name: Serverless Configuration
-      run: serverless config credentials --stage dev --provider aws         --key ${{ secrets.V}} --secret ${{ secrets.K }}
-    - name: Serverless Deployment
-      run: serverless deploy --stage dev --region eu-east-1
+        args: install
+    - name: serverless deploy
+      uses: serverless/github-action@master
+      with:
+        args: deploy
+      env:
+        SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+        # or if using AWS creds directly
+        # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
