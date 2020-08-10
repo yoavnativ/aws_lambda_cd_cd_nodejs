@@ -6,7 +6,7 @@ module.exports.hello = async event => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'AWS CI/CD Test - Your function executed successfully! 4:00'
+        message: 'AWS CI/CD Test - Your function executed successfully! 4:32'
       },
       null,
       2
