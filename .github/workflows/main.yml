@@ -2,7 +2,8 @@
 on:
   push:
     branches:
-      - master
+#      - master
+    branches: [ master ]
 jobs:
   Build:
     name: CI/CD
