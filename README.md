@@ -1,2 +1,2 @@
-# aws_lambda_cd_cd_nodejs
+# aws_lambda_ci_cd_nodejs
 example deploying nodejs lambda
